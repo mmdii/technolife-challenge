@@ -13,22 +13,22 @@ spec:
         app: result
     spec:
       containers:
-      - name: result
-        image: dockersamples/examplevotingapp_result:before
-        ports:
-        - containerPort: 80
-        env:
-        - name: POSTGRES_HOST
-          value: "db"
-        - name: POSTGRES_PORT
-          value: "5432"
-        - name: POSTGRES_USER
-          value: "postgres"
-        - name: POSTGRES_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: voting-db-superuser
-              key: password
+        - name: result
+          image: dockersamples/examplevotingapp_result:before
+          ports:
+            - containerPort: 80
+          env:
+            - name: POSTGRES_HOST
+              value: "db"
+            - name: POSTGRES_PORT
+              value: "5432"
+            - name: POSTGRES_USER
+              value: "postgres"
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: voting-db-superuser
+                  key: password
 ---
 apiVersion: v1
 kind: Service
@@ -37,7 +37,7 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-  - port: 80
-    targetPort: 80
+    - port: 80
+      targetPort: 80
   selector:
     app: result

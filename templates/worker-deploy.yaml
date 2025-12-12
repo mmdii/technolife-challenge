@@ -13,17 +13,17 @@ spec:
         app: worker
     spec:
       containers:
-      - name: worker
-        image: dockersamples/examplevotingapp_worker
-        env:
-        - name: REDIS_HOST
-          value: "redis"
-        - name: POSTGRES_HOST
-          value: "db"
-        - name: POSTGRES_USER
-          value: "postgres"
-        - name: POSTGRES_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: voting-db-superuser
-              key: password
+        - name: worker
+          image: dockersamples/examplevotingapp_worker
+          env:
+            - name: REDIS_HOST
+              value: "redis"
+            - name: POSTGRES_HOST
+              value: "db"
+            - name: POSTGRES_USER
+              value: "postgres"
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: voting-db-superuser
+                  key: password

@@ -13,13 +13,13 @@ spec:
         app: vote
     spec:
       containers:
-      - name: vote
-        image: dockersamples/examplevotingapp_vote:before
-        ports:
-        - containerPort: 80
-        env:
-        - name: REDIS_HOST
-          value: "redis"
+        - name: vote
+          image: dockersamples/examplevotingapp_vote:before
+          ports:
+            - containerPort: 80
+          env:
+            - name: REDIS_HOST
+              value: "redis"
 ---
 apiVersion: v1
 kind: Service
@@ -28,7 +28,7 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-  - port: 80
-    targetPort: 80
+    - port: 80
+      targetPort: 80
   selector:
     app: vote
