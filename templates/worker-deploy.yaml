@@ -21,9 +21,9 @@ spec:
             - name: POSTGRES_HOST
               value: "db"
             - name: POSTGRES_USER
-              value: "postgres"
+              value: "appuser" # <--- Changed from postgres
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: voting-db-superuser
+                  name: voting-db-app-user # <--- Changed from voting-db-superuser
                   key: password
