@@ -23,12 +23,14 @@ spec:
             - name: POSTGRES_PORT
               value: "5432"
             - name: POSTGRES_USER
-              value: "appuser" # <--- Changed from postgres
+              value: "appuser" # <--- MUST MATCH DB USER
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: voting-db-app-user # <--- Changed from voting-db-superuser
+                  name: voting-db-app-user
                   key: password
+            - name: POSTGRES_DB # <--- NEW: Force app to use 'app' DB
+              value: "app"
 ---
 apiVersion: v1
 kind: Service
