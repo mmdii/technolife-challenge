@@ -16,16 +16,16 @@ spec:
         - name: worker
           image: dockersamples/examplevotingapp_worker
           env:
+            - name: REDIS_HOST
+              value: "voting-redis-master" # Direct Service Name
             - name: POSTGRES_HOST
-              value: "db"
-            - name: POSTGRES_PORT
-              value: "5432"
+              value: "voting-db-rw" # Direct Service Name
             - name: POSTGRES_USER
-              value: "appuser" # <--- MUST MATCH DB USER
+              value: "appuser"
+            - name: POSTGRES_DB
+              value: "app"
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: voting-db-app-user
                   key: password
-            - name: POSTGRES_DB # <--- NEW: Force app to use 'app' DB
-              value: "app"
